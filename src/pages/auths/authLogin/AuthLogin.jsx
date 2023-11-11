@@ -100,7 +100,7 @@ export default function AuthLogin() {
                   navigate("/auth/create");
                 }}
               >
-                RightChain 만들기
+                회원가입
               </S.UnderButtonText>{" "}
               | &nbsp;&nbsp;
               <S.UnderButtonText

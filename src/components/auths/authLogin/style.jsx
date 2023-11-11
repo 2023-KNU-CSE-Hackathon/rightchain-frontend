@@ -116,7 +116,7 @@ export const LoginTitleStrong = styled.strong`
 
 /* ------- 로그인 title image ------- */
 export const LoginLogo = styled.img`
-  height: 6rem;
+  height: 7rem;
   object-fit: cover;
   margin-bottom: 2rem;
 `;
