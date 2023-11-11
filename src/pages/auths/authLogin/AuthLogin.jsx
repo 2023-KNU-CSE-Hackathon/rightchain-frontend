@@ -116,7 +116,7 @@ export default function AuthLogin() {
                   navigate("/auth/create");
                 }}
               >
-                rightChain 만들기
+                RightChain 만들기
               </S.UnderButtonText>{" "}
               | &nbsp;&nbsp;
               <S.UnderButtonText
@@ -133,7 +133,7 @@ export default function AuthLogin() {
             <S.SocialButtonContainer>
               <AuthSocialButton
                 onClick={() => {
-                  onClickSocialLogin("kakao");
+                  OnClickSocialLogin("kakao");
                 }}
                 imgSrc={KakaoIcon}
                 altText="카카오 로고"
@@ -141,7 +141,7 @@ export default function AuthLogin() {
               />
               <AuthSocialButton
                 onClick={() =>{
-                  onClickSocialLogin("naver");
+                  OnClickSocialLogin("naver");
                 }}
                 imgSrc={NaverIcon}
                 altText="네이버 로고"

@@ -33,7 +33,6 @@ export const fetchKakaoTokens = async () => {
 };
 
 const KakaoLogin = () => {
-  
   const [loading, setLoading] = useState(true);
 
   // 로그인 성공시 MyPage로 이동시키기위해 useNavigate 사용
