@@ -70,18 +70,23 @@ export const AuthSignUpButton = styled.button`
   font-weight: 600;
   font-size: 2rem;
   color: ${colors.bg};
-  box-shadow: 0rem 0.1rem 1rem ${colors.primary1};
   border-radius: 4.4rem;
   margin-bottom: 4.1rem;
+
+  &:hover {
+    box-shadow: 0rem 0.1rem 1rem ${colors.primary1};
+    cursor: pointer; 
+  }
 `;
 
 export const AuthButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top : 1em;
   background: ${colors.primary1};
-  width: 120px;
-  height: 35px;
+  width: 80px;
+  height: 30px;
   font-weight: 600;
   font-size: 14px;
   color: ${colors.bg};

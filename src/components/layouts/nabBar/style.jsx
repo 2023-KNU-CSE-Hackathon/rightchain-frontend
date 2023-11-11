@@ -26,7 +26,7 @@ export const NavLogo = styled(Link)`
 `;
 
 export const NavLogoIcon = styled.img`
-  height: 3rem;
+  height: 4rem;
   object-fit: cover;
   margin-right: 1rem;
 `;

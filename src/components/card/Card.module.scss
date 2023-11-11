@@ -113,3 +113,16 @@
         }
     }
 }
+    @media (max-width: 1220px) {
+        .item_container {
+            width: 500px; // 카드의 너비를 줄입니다.
+            height: 300px; // 카드의 높이를 줄입니다.
+    
+            .mainText {
+                width: 190px; // 메인 텍스트의 너비를 줄입니다.
+                height: 170px; // 메인 텍스트의 높이를 줄입니다.
+                font-size: 2.5em; // 폰트 사이즈를 줄입니다.
+            }
+        }
+    }
+    

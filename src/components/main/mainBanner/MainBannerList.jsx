@@ -10,21 +10,21 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "./pagination.css";
 
-import DeepDive from "./img/DeepDive.jpeg";
-import DeepDiveMobile from "./img/DeepDiveMovbile.jpeg";
-import EventPresent from "./img/EventPresent.png";
-import EventPresentMobile from "./img/EventPresentMobile.png";
+import b2gPoster from "./img/b2gPoster.jpg";
+import b2gPosterMobile from "./img/b2gPosterMobile.png";
+import hackathon from "./img/hackathon.png";
+import hackathonMobile from "./img/hackathonMobile.png";
 
 import { Link } from "react-router-dom";
 
 function MainBannerList() {
   const bannersDesktop = [
-    { img: EventPresent, url: "https://www.instagram.com/moin.dgu/" },
-    { img: DeepDive, url: "https://www.instagram.com/deep.daiv/" }
+    { img: b2gPoster, url: "https://www.moe.go.kr/main.do?s=moe" },
+    { img: hackathon, url: "https://computer.knu.ac.kr/bbs/board.php?bo_table=sub5_1&wr_id=27600&page=3" }
   ];
   const bannersMobile = [
-    { img: EventPresentMobile, url: "https://www.instagram.com/moin.dgu/" },
-    { img: DeepDiveMobile, url: "https://www.instagram.com/deep.daiv/" }
+    { img: b2gPosterMobile, url: "https://www.moe.go.kr/main.do?s=moe" },
+    { img: hackathonMobile, url: "https://computer.knu.ac.kr/bbs/board.php?bo_table=sub5_1&wr_id=27600&page=3" }
   ];
 
   const [currentBanners, setCurrentBanners] = useState(bannersDesktop);

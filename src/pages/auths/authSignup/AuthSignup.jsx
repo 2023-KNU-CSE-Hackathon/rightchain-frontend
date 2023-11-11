@@ -185,6 +185,7 @@ function Signup() {
       name="verificationCode"
       onChange={handleVerificationCodeChange}
       value={verificationCode}
+      isvaild="true"
     />
     <S.AuthButton onClick={handleEmailVerificationConfirm}>코드인증</S.AuthButton>
   </S.SignUpInputWrapper>
@@ -254,7 +255,7 @@ function Signup() {
         />
       </S.SignUpInputWrapper>
 
-      {/* --------------- 학교 --------------- */}v
+      {/* --------------- 학교 --------------- */}
 
       <S.SignUpInputWrapper>
         <S.SignUpInputTitleText>* 학교</S.SignUpInputTitleText>
