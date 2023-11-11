@@ -73,6 +73,16 @@ export const SignUpInputWrapper = styled.div`
   flex-direction: column;
   margin-bottom: 6rem;
 `;
+
+export const AuthButton = styled.button`
+  margin-top: 1rem; // 추가한 스타일
+  padding: 0.5rem 1rem; // 추가한 스타일
+  background-color: ${colors.primary1}; // 추가한 스타일
+  color: #fff; // 추가한 스타일
+  border: none; // 추가한 스타일
+  border-radius: 0.5rem; // 추가한 스타일
+  cursor: pointer; // 추가한 스타일
+`;
 // export const MessageText = styled.span`
 //   margin-top: 1rem;
 //   color: ${props => (props.real == "true" ? "#00C24E" : "#FF5D47")};

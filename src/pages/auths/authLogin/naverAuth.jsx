@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CLIENT_ID = "Zn5JnI_lZiRttfFL7uTR";
-const REDIRECT_URI = "http://localhost:5173";
+const REDIRECT_URI = "https://h.princip.es";
 const STATE = "RightChain";
 export const NAVER_AUTH_URI = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state=${STATE}`;
 
@@ -15,15 +15,15 @@ export const fetchNaverTokens = async () => {
   if (code && state) {
     try {
         const toeknResponse = await axios.post(
-            "http://localhost:50001/api/v1/oauth/naver/login/callback/",
+            "https://h.princip.es/api/v1/oauth/naver/login/",
             {code, state}
         );
 
         const accessToken = tokenResponse.data.access_token;
-        const refreshToken = tokenResponse.data.refresh_token;
+        //const refreshToken = tokenResponse.data.refresh_token;
 
         localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        //ocalStorage.setItem("refreshToken", refreshToken);
 
         return true;
     } catch (error) {

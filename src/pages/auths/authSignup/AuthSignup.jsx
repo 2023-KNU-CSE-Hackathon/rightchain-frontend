@@ -21,28 +21,14 @@ function Signup() {
   const [roles, setRoles] = useState([]);
   const [teacherLicenseIsValid, setTeacherLicenseIsValid] = useState(false);
   const [committeeNumberIsValid, setCommitteeNumberIsValid] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
 
+  const [verificationCode, setVerificationCode] = useState('');
   const roleList = [
-    "TEACHER",
+    "선생님",
     "학부모/학생",
-    "COMMITTEE"
+    "위원회"
   ];
-
-  // api요청용 roleList를 변환하는 함수
-
-  const convertRoleToRole = e => {
-    switch(e) {
-        case "선생님":
-            return "TEACHER";
-        case "학부모/학생":
-            return "USER";
-        case "위원회":
-            return "COMMITTEE";
-        default:
-            return "";
-    }
-}
-
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -50,8 +36,51 @@ function Signup() {
     setRoles(roleList);
   }, []);
 
+  const handleVerificationCodeChange = e => {
+    setVerificationCode(e.target.value);
+  };
+
+  const handleEmailVerification = async () => {
+    try {
+      await axios.get('/auth/email-auth/issue', {
+        params: { email: user.email }
+      });
+      alert('인증 메일이 발송되었습니다. 이메일을 확인해 주세요.');
+  
+      // 인증 코드 입력 필드를 보이게 하기 위해 상태를 true로 변경
+      setIsEmailVerified(true);
+    } catch (error) {
+      console.error('Email verification failed:', error);
+      alert('이메일 인증에 실패했습니다.');
+    }
+  };
+
+  const handleEmailVerificationConfirm = async () => {
+    try {
+      const response = await axios.get('/auth/email-auth/valid/', {
+        params: { email: user.email, code: verificationCode }
+      });
+  
+      if (response.status === 200) {
+        alert('이메일 인증이 완료되었습니다.');
+      } else {
+        alert('이메일 인증에 실패했습니다. 인증 코드를 확인해주세요.');
+      }
+    } catch (error) {
+      console.error('Email verification confirm failed:', error);
+      alert('이메일 인증 확인에 실패했습니다. 인증 코드를 확인해주세요.');
+    }
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
+
+    if (setIsEmailVerified && isEmailVerified) {
+      alert('이메일 인증이 완료되었습니다.');
+    } 
+    else {
+      alert('이메일 인증 처리가 되지 않았습니다.')
+    }
     // 모든 필수 정보가 입력되었는지 확인
     if (
       user.email &&
@@ -62,13 +91,13 @@ function Signup() {
       user.school
     ) {
       try {
-        const response = await axios.post("/auth/register", {
+        const response = await axios.post("/auth/register/", {
           // name: user.name,
           email: user.email,
           password: user.password,
           role: user.role,
           school_name: user.school,
-
+          //code: verificationCode,
         });
         if (response.status === 200) {
           alert("회원가입이 완료되었습니다.");
@@ -143,7 +172,23 @@ function Signup() {
           value={user.email}
           isvaild="true"
         />
+        <S.AuthButton onClick = {handleEmailVerification}>인증하기</S.AuthButton>
       </S.SignUpInputWrapper>
+
+      {/* 이메일 인증이 요청되면 인증 코드 입력 필드와 인증 확인 버튼을 보여줍니다 */}
+{isEmailVerified && (
+  <S.SignUpInputWrapper>
+    <S.SignUpInputTitleText>인증코드</S.SignUpInputTitleText>
+    <S.SignUpInput
+      placeholder="인증 코드를 입력해주세요."
+      type="text"
+      name="verificationCode"
+      onChange={handleVerificationCodeChange}
+      value={verificationCode}
+    />
+    <S.AuthButton onClick={handleEmailVerificationConfirm}>코드인증</S.AuthButton>
+  </S.SignUpInputWrapper>
+)}
 
       {/* --------------- 비밀번호 입력 --------------- */}
 

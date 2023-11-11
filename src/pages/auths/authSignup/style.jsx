@@ -74,3 +74,17 @@ export const AuthSignUpButton = styled.button`
   border-radius: 4.4rem;
   margin-bottom: 4.1rem;
 `;
+
+export const AuthButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${colors.primary1};
+  width: 120px;
+  height: 35px;
+  font-weight: 600;
+  font-size: 14px;
+  color: ${colors.bg};
+  border-radius: 4px;
+  margin-left: 10px;
+`;

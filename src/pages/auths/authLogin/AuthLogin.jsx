@@ -62,35 +62,19 @@ export default function AuthLogin() {
     }
 
     try {
-      const response = await axios.post("/auth/register", {
+      const response = await axios.post("/auth/login", {
         email: email,
         password: pwd,
-        role: "USER",
-        school_name: "경북대학교",
       });
 
-      const accessToken = response.response.body.token.access_token;
-      // const refreshToken = response.data.token.refresh;
-      // const nickname = response.data.user.nickname;
+      if (response.status === 200) {
+        const accessToken = response.data.response.body.token.access_token;
+        localStorage.setItem("access_token", accessToken);
 
-      setUserInfo({
-        email: email,
-        // nickname: nickname,
-        accessToken: accessToken,
-        // refreshToken: refreshToken
-      });
-
-      localStorage.setItem(
-        "userInfo",
-        JSON.stringify({
-          email: email,
-          // nickname: nickname,
-          accessToken: accessToken,
-          // refreshToken: refreshToken
-        })
-      );
-
-      navigate("/");
+        navigate("/");
+        alert("로그인이 완료되었습니다.");
+      }
+      
     } catch (error) {
       console.error("Login failed:", error.message);
       alert("비밀번호를 다시 입력해주세요!");
