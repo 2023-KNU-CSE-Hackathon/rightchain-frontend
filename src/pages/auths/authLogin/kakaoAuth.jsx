@@ -7,12 +7,11 @@ const CLIENT_ID = "127265cef17dc44834bc915935e7f20d";
 const REDIRECT_URI = "https://h.princip.es";
 export const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-export const fetchKakaoTokens = async () => {
+const fetchKakaoTokens = async (code) => {
   try {
     // 백엔드로부터 인가 코드를 전달하여 액세스 토큰과 리프레시 토큰 받아오기
     const tokenResponse = await axios.post(
-      "/auth/kakao/login/",
-      { code }
+      "/auth/kakao/login?code=" + code
     );
 
     setLoading(false); // 데이터 로딩 완료
@@ -37,7 +36,7 @@ export const fetchKakaoTokens = async () => {
 
 };
 
-const KakaoLogin = () => {
+export const KakaoLogin = () => {
   const [loading, setLoading] = useState(true);
   console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
 
@@ -47,13 +46,12 @@ const KakaoLogin = () => {
   useEffect(() => {
     // 인가코드 받아오기
     const code = new URL(window.location.href).searchParams.get("code");
-    console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
-    console.log(code);
-    console.log('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ');
+    
     if (code) {
-      fetchTokens();
+      fetchKakaoTokens(code);
     } else {
       setLoading(false); // 인가코드 없음
+      return false;
     }
   }, []);
 

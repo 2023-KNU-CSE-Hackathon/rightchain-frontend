@@ -10,7 +10,7 @@ import AuthLoginForm from "../../../components/auths/authLogin/AuthLoginForm";
 import AuthSocialButton from "../../../components/auths/authSocialButton/AuthSocialButton";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../context/authState";
-import {fetchKakaoTokens, KAKAO_AUTH_URI} from "./kakaoAuth";
+import {KakaoLogin, KAKAO_AUTH_URI} from "./kakaoAuth";
 import {fetchNaverTokens, NAVER_AUTH_URI} from "./naverAuth";
 
 export default function AuthLogin() {
@@ -23,7 +23,8 @@ export default function AuthLogin() {
 
   const OnClickSocialLogin = async (platform) => {
     if (platform === "kakao") {
-      const success = await fetchKakaoTokens();
+      window.location.href = KAKAO_AUTH_URI;
+      const success = await KakaoLogin();
 
       if (success) {
         navigate("/");
