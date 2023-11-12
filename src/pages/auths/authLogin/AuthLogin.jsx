@@ -24,13 +24,13 @@ export default function AuthLogin() {
   const OnClickSocialLogin = async (platform) => {
     if (platform === "kakao") {
       window.location.href = KAKAO_AUTH_URI;
-      const success = await KakaoLogin();
+      // const success = await KakaoLogin();
 
-      if (success) {
-        navigate("/");
-      } else {
-        window.location.href = KAKAO_AUTH_URI;
-      }
+      // if (success) {
+      //   navigate("/");
+      // } else {
+      //   window.location.href = KAKAO_AUTH_URI;
+      // }
 
     }
 
@@ -74,6 +74,8 @@ export default function AuthLogin() {
 
         navigate("/");
         alert("로그인이 완료되었습니다.");
+      } else {
+        alert("비밀번호를 다시 입력해주세요!");
       }
       
     } catch (error) {

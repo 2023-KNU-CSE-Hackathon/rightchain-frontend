@@ -32,6 +32,8 @@ import CommunityEdit from "./pages/community/communityEdit/CommunityEdit";
 import SuggestionCreate from "./pages/suggestion/suggestionCreate/SuggestionCreate";
 import AuthReseting from "./pages/auths/authReseting/AuthReseting";
 import Loading from "./components/common/loading/Loading";
+import KakaoLogin from "./pages/auths/authLogin/KakaoLogin";
+//import NaverLogin from "./pages/auths/authLogin/NaverLogin";
 
 const LazyAbout = lazy(() => import("./pages/about/About"));
 
@@ -64,6 +66,14 @@ const router = createBrowserRouter([
           </Suspense>
         )
       },
+      {
+        path: "kakaoLogin",
+        element: <KakaoLogin />
+      },
+      //{
+      //  path: "naverLogin",
+      //  element: <NaverLogin />
+      //},
       {
         path: "login",
         element: <AuthLogin />
