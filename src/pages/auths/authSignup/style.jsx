@@ -9,6 +9,14 @@ export const SignUpInputWrapper = styled.div`
   width: 60%;
 `;
 
+export const emailInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 20px;
+  width: 60%;
+`;
+
 /* ------- 회원 가입 컴포넌트 스타일 ------- */
 export const SignUpInputTitleText = styled.h2`
   font-size: 20px;
@@ -27,7 +35,9 @@ export const SignUpInput = styled.input`
   /* Your styling here */
   border-bottom: ${props =>
     props.isvaild == "true" ? "1px solid #000000" : "1px solid red"};
+  font-size : 15px
   /* Additional styling based on validity */
+   
 `;
 
 export const MessageText = styled.span`
@@ -78,7 +88,13 @@ export const AuthSignUpButton = styled.button`
     cursor: pointer; 
   }
 `;
+export const AuthButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;  
 
+  width: 100%;
+`;
 export const AuthButton = styled.button`
   display: flex;
   justify-content: center;

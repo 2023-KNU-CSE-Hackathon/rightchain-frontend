@@ -160,7 +160,7 @@ function Signup() {
   return (
     <S.SignUpInputContainer onSubmit={handleSubmit}>
 
-      <S.SignUpInputWrapper>
+      <S.emailInputWrapper>
         {/* --------------- 이메일  --------------- */}
         <S.SignUpInputTitleText>*이메일</S.SignUpInputTitleText>
         <S.SignUpInput
@@ -172,12 +172,14 @@ function Signup() {
           value={user.email}
           isvaild="true"
         />
+        <S.AuthButtonWrapper>
         <S.AuthButton onClick = {handleEmailVerification}>인증하기</S.AuthButton>
-      </S.SignUpInputWrapper>
+        </S.AuthButtonWrapper>
+      </S.emailInputWrapper>
 
       {/* 이메일 인증이 요청되면 인증 코드 입력 필드와 인증 확인 버튼을 보여줍니다 */}
 {isEmailVerified && (
-  <S.SignUpInputWrapper>
+  <S.emailInputWrapper>
     <S.SignUpInputTitleText>인증코드</S.SignUpInputTitleText>
     <S.SignUpInput
       placeholder="인증 코드를 입력해주세요."
@@ -187,8 +189,10 @@ function Signup() {
       value={verificationCode}
       isvaild="true"
     />
+    <S.AuthButtonWrapper>
     <S.AuthButton onClick={handleEmailVerificationConfirm}>코드인증</S.AuthButton>
-  </S.SignUpInputWrapper>
+    </S.AuthButtonWrapper>
+  </S.emailInputWrapper>
 )}
 
       {/* --------------- 비밀번호 입력 --------------- */}
