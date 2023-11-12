@@ -1,6 +1,6 @@
 import React from "react";
 import { styled, keyframes } from "styled-components";
-import MoinIcon from "../../../assets/images/moin_logo.png";
+import RightChainLogo from "../../../assets/images/rightchain_logo.png";
 
 const fadeInAnimation = keyframes`
   from {
@@ -34,7 +34,7 @@ export const PagingNoPageIcon = styled.img`
 function NoPage() {
   return (
     <PagingNoPage>
-      <PagingNoPageIcon src={MoinIcon} />
+      <PagingNoPageIcon src={RightChainLogo} />
       게시글이 아직 없습니다!
     </PagingNoPage>
   );

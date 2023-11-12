@@ -10,7 +10,7 @@ import { BsChevronCompactRight } from "react-icons/bs";
 
 import * as S from "./style";
 import { userState } from "../../../context/authState";
-import MoinLogoBase from "../../../assets/images/moin_logo_base.svg";
+import RightChinLogo from "../../../assets/images/logo.png";
 
 import { LanguageAtom } from "../../../recoil/LanguageAtom";
 export default function NavBar() {
@@ -111,8 +111,7 @@ export default function NavBar() {
   return (
     <S.NavWrapper>
       <S.NavLogo>
-        <S.NavLogoIcon src={MoinLogoBase} alt="MO:IN" />
-        <S.NavLogoTitle to={`/`}> RIGHT CHAIN</S.NavLogoTitle>
+        <S.NavLogoIcon src={RightChinLogo} alt="Right Chain" />
       </S.NavLogo>
 
       {isMobile ? (

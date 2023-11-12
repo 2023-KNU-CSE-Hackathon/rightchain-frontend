@@ -15,6 +15,12 @@ export const AuthSocialButton = styled.button`
   border-radius: 1.2rem;
   font-weight: 700;
   font-size: 2.4rem;
+
+  &:hover {
+    box-shadow: 0rem 0.05rem 0.5rem ${colors.primary1};
+    cursor: pointer; 
+  }
+
 `;
 
 export const AuthSocialButtonText = styled.p`

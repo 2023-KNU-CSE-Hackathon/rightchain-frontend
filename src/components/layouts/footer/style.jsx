@@ -17,14 +17,14 @@ export const FooterContent = styled.div`
   padding: 0 3rem;
   padding-bottom: 2rem;
   border-bottom: solid 1px;
-  border-color: ${props => props.theme.colors.primary2};
+  border-color: ${props => props.theme.colors.primary1};
 `;
 
 export const FooterTitle = styled.div`
   color: ${props => props.theme.colors.primary1};
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 900;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 export const FooterBody = styled.div``;
