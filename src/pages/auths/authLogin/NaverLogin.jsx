@@ -11,12 +11,12 @@ function NaverLogin() {
  
     const fetchKakaoTokens = async (code) => {
         try {
-            const tokenResponse = await axios.post("/oauth/kakao/login?code=" + code);
+            const tokenResponse = await axios.post("/oauth/naver/login?code=" + code);
  
             if (tokenResponse.status === 200) {
                 const accessToken = tokenResponse.data.body.token.access_token;
                 
-                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("access_token", accessToken);
                 navigate("/");
             } else if (tokenResponse.status === 401) {
                 navigate("../register/naverRegister");

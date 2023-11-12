@@ -13,7 +13,7 @@ export const emailInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   width: 60%;
 `;
 

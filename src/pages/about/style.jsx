@@ -14,7 +14,7 @@ export const AboutSpace = styled.div`
 export const AboutSection1 = styled.div`
   width: 100vw;
   height: calc(100vh + 1px);
-  background-color: black;
+  background-color: white;
 
   position: relative;
 
@@ -49,7 +49,8 @@ export const AboutSection_Box = styled.div``;
 export const AboutSection_Img = styled.img`
   position: absolute;
   z-index: 1;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
+  width: 70%;
 `;
 
 export const AboutSection_Img_r = styled.img`
@@ -64,6 +65,14 @@ export const AboutSection1_Title = styled.img`
   left: 50%;
 `;
 
+export const AboutSection1_logo = styled.img`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  top: 50%;
+  left: 50%;
+`
+
 export const AboutSection2 = styled.div`
   position: relative;
   flex-shrink: 0;
@@ -77,11 +86,11 @@ export const AboutSection2 = styled.div`
 
   & > :nth-child(1) {
     top: 0;
-    background: linear-gradient(to bottom, black, #000a41);
+    background: linear-gradient(to bottom, white, #382521);
   }
   & > :nth-child(2) {
     bottom: 0;
-    background: linear-gradient(to bottom, #000a41, black);
+    background-color: #382521;
   }
 `;
 export const AboutSection2_Coloring = styled.div`
@@ -98,10 +107,10 @@ export const AboutSection3 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
-
+  background-color: #382521;
+  padding : 200px
   width: 100vw;
-  height: calc(100vh + 0.1rem);
+  height: calc(50vh + 0.1rem);
 `;
 
 export const AboutSection4 = styled.div`
@@ -112,7 +121,7 @@ export const AboutSection4 = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: #00072b;
+  background-color: green;
   padding: 30rem 0;
   width: 100vw;
 `;

@@ -19,9 +19,9 @@ function CommuntiyDetailPageType({ type, aiName }) {
           : type === "qnas"
           ? "Q&A"
           : type === "suggestion"
-          ? "건의사항"
+          ? "신고접수"
           : type === "notice"
-          ? "공지사항"
+          ? "신고내역"
           : "수정"}
       </S.DetailPageTypeText>
     </S.DetailPageType>

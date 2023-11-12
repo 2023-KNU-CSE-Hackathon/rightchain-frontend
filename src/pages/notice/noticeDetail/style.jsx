@@ -50,7 +50,7 @@ export const Thumbnailimg = styled.img`
   margin-bottom: 6rem;
 `;
 
-export const DetailViewText = styled.p`
+export const DetailAgreeText = styled.p`
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../../api/axios";
- 
+
 function KakaoLogin() {
     const navigate = useNavigate();
     const PARAMS = new URL(document.location).searchParams;
@@ -12,19 +12,23 @@ function KakaoLogin() {
     const fetchKakaoTokens = async (code) => {
         try {
             const tokenResponse = await axios.post("/oauth/kakao/login?code=" + code);
- 
+            // console.log("tokenResponse: ", tokenResponse);
             if (tokenResponse.status === 200) {
-                const accessToken = tokenResponse.data.body.token.access_token;
+                const accessToken = tokenResponse.data.response.body.token.access_token;
                 
-                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("access_token", accessToken);
                 navigate("/");
-            } else if (tokenResponse.status === 401) {
-                navigate("../register/kakaoRegister");
             }
- 
+
         } catch (error) {
-            console.error("Error:", error);
-            return false;
+            // console.log("error22: ", error);
+            if (error.response.status === 401) {
+                // console.log("email: ", error.response.data.response);
+
+                navigate("/auth/oauth/create", { state: { email: error.response.data.response } });
+            } else {
+                console.error("Error:", error);
+            }
         }
     }
 

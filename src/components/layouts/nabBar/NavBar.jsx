@@ -48,10 +48,10 @@ export default function NavBar() {
     },
     {
       link: `/notice`,
-      title: ["공지사항", "Notice"]
+      title: ["사건공지", "Notice"]
     },
     {
-      link: `/suggestion`,
+      link: `/suggestion/create`,
       title: ["신고접수", "Suggestion"]
     },
     {
@@ -123,6 +123,7 @@ export default function NavBar() {
         setUserInfo(null);
       });
     }
+    console.log(userInfo);
   }, [location.pathname]);
 
   const handleLogout = () => {
@@ -147,21 +148,8 @@ export default function NavBar() {
             <S.NavSideBarMenu>
               <S.NavSideBarHeader>
                 {userInfo ? (
-                  <S.NavLink to={`/mypage`} $isActive={true}>
-                    {userInfo.name}
-                    {getLanguageNum() == 0 ? " 님" : ""}
-                  </S.NavLink>
-                ) : (
-                  <S.NavLink to={`/login`} $isActive={true}>
-                    {getLanguageNum() == 0 ? "로그인하세요!" : "Login!"}
-                  </S.NavLink>
-                )}
-                <BsChevronCompactRight />
-              </S.NavSideBarHeader>
-              <S.NavSideBarHeader>
-                {userInfo ? (
-                  <S.NavLink to={`/mypage`} $isActive={true}>
-                    {userInfo.name}
+                  <S.NavLink to={`/logout`} $isActive={true}>
+                    {userInfo.response.name}
                     {getLanguageNum() == 0 ? " 님" : ""}
                   </S.NavLink>
                 ) : (
@@ -186,11 +174,8 @@ export default function NavBar() {
         <S.NavMonitorMenu>
           {setMenu()}
           {userInfo ? (
-            <S.NavLink
-              to={`/mypage`}
-              $isActive={location.pathname == `/mypage`}
-            >
-              {getLanguageNum() == 0 ? "마이페이지" : "Mypage"}
+            <S.NavLink to={`/logout`} $isActive={location.pathname == `/logout`}>
+              {getLanguageNum() == 0 ? "로그아웃" : "Logout"}
             </S.NavLink>
           ) : (
             <S.NavLink to={`/login`} $isActive={location.pathname == `/login`}>

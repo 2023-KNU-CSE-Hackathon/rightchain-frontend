@@ -92,7 +92,7 @@ const ProfileList = ({
                           url = "/community/tips/";
                         } else if (data.category === "qna") {
                           url = "/community/qnas/";
-                        } else if (data.category === "건의사항") {
+                        } else if (data.category === "신고접수") {
                           url = "/suggestion/";
                         } else if (data.category === "ai") {
                           url = "/AiService/";
@@ -115,7 +115,7 @@ const ProfileList = ({
                         {data.category === "common" && "자유 게시판"}
                         {data.category === "tip" && "이용 꿀팁"}
                         {data.category === "qna" && "Q&A"}
-                        {data.category === "건의사항" && "건의사항"}
+                        {data.category === "신고접수" && "신고접수"}
                         {data.category === "ai" && "ai"}
                       </S.AiServiceDetailTipTableTd>
 

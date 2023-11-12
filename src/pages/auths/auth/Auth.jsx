@@ -13,6 +13,10 @@ function Auth() {
       titleCaseKorean = '회원가입';
       titleCaseEnglish = 'JOIN MEMBERSHIP'
       break;
+    case '/auth/oauth/create':
+      titleCaseKorean = '소셜 회원가입';
+      titleCaseEnglish = 'JOIN MEMBERSHIP'
+      break;
     case '/auth/reset':
       titleCaseKorean = '비밀번호 초기화';
       titleCaseEnglish = 'RESET PASSWORD'

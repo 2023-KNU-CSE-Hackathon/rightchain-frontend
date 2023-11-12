@@ -15,7 +15,7 @@ export const Card = {
     );
   },
 
-  Item: ({ id, title, category, subcategory, region, quantity, time, progress, wallet,...rest }) => {
+  Item: ({ name, case_num, title, content, is_case_close, school_name, progress, ...rest }) => {
     const progressBar = useRef();
     const [isOpen, setIsOpen] = useState(false); // 팝업의 열림/닫힘 상태를 추가합니다.
     const [popupContent, setPopupContent] = useState(null); // 팝업 컨텐츠를 저장할 상태를 추가합니다.
@@ -31,7 +31,7 @@ export const Card = {
         if (!Array.isArray(wallet)) return;
       const content = (
         <div>
-          <h2>사건번호: {id}</h2>
+          <h2>사건번호: {case_num}</h2>
           <ul>
             {wallet.map((address, index) => (
               <li key={index}>
@@ -52,11 +52,11 @@ export const Card = {
 
     return (
       <div className={styles.item_container} onClick={handleOpen} {...rest}>
-        <div className={styles.mainText}> {id} 사건 처리중</div>
+        <div className={styles.mainText}> {case_num} 사건 처리중</div>
 
         <div className={styles.description}>
           <p>
-            {category}/{subcategory} - {region}
+            {name} - {title}
           </p>
           <h3>{title}</h3>
         </div>
@@ -70,14 +70,14 @@ export const Card = {
           <div className={styles.remain}>
             <div className={styles.quantity}>
               <h2>
-                <span>{quantity}차</span>
+                <span>{case_num}</span>
                 <span>처리중</span>
               </h2>
             </div>
 
             <div className={styles.time}>
               <FontAwesomeIcon icon={faClock} />
-              <p>{time} 시간 남음</p>
+              <p>{school_name}</p>
             </div>
           </div>
         </div>

@@ -40,15 +40,14 @@ function Signup() {
     setVerificationCode(e.target.value);
   };
 
-  const handleEmailVerification = async () => {
+  const handleEmailVerification = async (event) => {
+    event.stopPropagation();
+    alert('인증 메일이 발송되었습니다. 이메일을 확인해 주세요.');
+    setIsEmailVerified(true);
     try {
       await axios.get('/auth/email-auth/issue', {
         params: { email: user.email }
       });
-      alert('인증 메일이 발송되었습니다. 이메일을 확인해 주세요.');
-  
-      // 인증 코드 입력 필드를 보이게 하기 위해 상태를 true로 변경
-      setIsEmailVerified(true);
     } catch (error) {
       console.error('Email verification failed:', error);
       alert('이메일 인증에 실패했습니다.');
@@ -97,7 +96,6 @@ function Signup() {
           password: user.password,
           role: user.role,
           school_name: user.school,
-          //code: verificationCode,
         });
         if (response.status === 200) {
           alert("회원가입이 완료되었습니다.");
@@ -172,8 +170,10 @@ function Signup() {
           value={user.email}
           isvaild="true"
         />
+        
         <S.AuthButtonWrapper>
-        <S.AuthButton onClick = {handleEmailVerification}>인증하기</S.AuthButton>
+        <S.AuthButton>중복확인</S.AuthButton>
+        <S.AuthButton onClick = {event => handleEmailVerification(event)}>인증하기</S.AuthButton>
         </S.AuthButtonWrapper>
       </S.emailInputWrapper>
 
@@ -295,45 +295,9 @@ function Signup() {
           ))}
         </S.Select>
       </S.SignUpInputWrapper>
-      
-      {/* 선택한 역할에 따른 추가 정보 요청 */}
-
-      {user.role === "TEACHER" && 
-        <S.SignUpInputWrapper>
-          <S.SignUpInputTitleText>* 교사 자격면허 번호 조회</S.SignUpInputTitleText>
-            <S.SignUpInput
-                required
-                placeholder="교사 면허증 번호를 입력해주세요."
-                type="text"
-                name="teacherLicense"
-                onChange={handleTeacherLicense}
-                isvaild={teacherLicenseIsValid ? "true" : "false"}
-                />
-          {!teacherLicenseIsValid &&
-            <S.MessageText isvaild="false">
-              면허 번호가 일치하지 않습니다.
-            </S.MessageText>
-          }
-        </S.SignUpInputWrapper>}
-      {user.role === "COMMITTEE" && 
-        <S.SignUpInputWrapper>
-          <S.SignUpInputTitleText>* 위원회 인증 번호 조회</S.SignUpInputTitleText>
-            <S.SignUpInput
-                required
-                placeholder="위원회 인증 번호를 입력해주세요."
-                type="text"
-                name="committeeNumber"
-                onChange={handleCommitteeNumber}
-                isvaild={committeeNumberIsValid ? "true" : "false"}
-            />
-        {!committeeNumberIsValid &&
-          <S.MessageText isvaild="false">
-            인증 번호가 일치하지 않습니다.
-          </S.MessageText>
-        }   
-        </S.SignUpInputWrapper>}
       <S.AuthSignUpButton type="submit">가입하기</S.AuthSignUpButton>
     </S.SignUpInputContainer>
+    
   );
 }
 

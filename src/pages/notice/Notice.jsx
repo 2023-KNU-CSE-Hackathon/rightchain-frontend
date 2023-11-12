@@ -39,7 +39,7 @@ function Notice() {
   return (
     <S.NoticeWrapper>
       <Banner
-        titleKorean="공지사항"
+        titleKorean="사건 공지"
         titleEnglish="NOTICE"
         image={<S.NoticeIconImg />}
       />

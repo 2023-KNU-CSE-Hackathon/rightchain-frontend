@@ -33,6 +33,8 @@ import SuggestionCreate from "./pages/suggestion/suggestionCreate/SuggestionCrea
 import AuthReseting from "./pages/auths/authReseting/AuthReseting";
 import Loading from "./components/common/loading/Loading";
 import KakaoLogin from "./pages/auths/authLogin/KakaoLogin";
+import OAuthSignup from "./pages/auths/oauthSignup/OAuthSignup";
+import WalletCreate from "./pages/community/walletCreate";
 //import NaverLogin from "./pages/auths/authLogin/NaverLogin";
 
 const LazyAbout = lazy(() => import("./pages/about/About"));
@@ -85,6 +87,10 @@ const router = createBrowserRouter([
           {
             path: "create",
             element: <AuthSignup />
+          },
+          {
+            path: "oauth/create",
+            element: <OAuthSignup />
           },
           {
             path: "create/soical",
@@ -170,6 +176,10 @@ const router = createBrowserRouter([
       {
         path: "community/edit/:id",
         element: <CommunityEdit />
+      },
+      {
+        path: "walletCreate/:id",
+        element: <WalletCreate />
       }
     ],
     errorElement: <NotFoundError />

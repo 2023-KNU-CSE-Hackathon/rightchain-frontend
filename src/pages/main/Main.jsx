@@ -15,81 +15,7 @@ import Popup from "../../components/card/Popup"; // 팝업 컴포넌트를 impor
 import { Card } from "../../components/card/Card.jsx";
 
 function Main() {
-  const [data, setData] = useState([
-    {
-      id: "2023001",
-      title: "침해신고 2023001 처리중",
-      category: "대구",
-      subcategory: "복현동",
-      region: "경북대학교",
-      quantity: 1,
-      time: 12,
-      progress: 0.75,
-      wallet: ["0x1234567890123456789012345678901234567890"],
-      likes: 0,
-  },
-  {
-    id: 2023002,
-    title: "침해신고 2023002 처리중",
-    category: "대구",
-    subcategory: "복현동",
-    region: "경북대학교",
-    quantity: 1,
-    time: 12,
-    progress: 0.75,
-    wallet: ["0x1234567890123456789012345678901234567890", "0x1234567890123456789012345678901234567890", "0x1234567890123456789012345678901234567890"],
-    likes: 0,
-},
-{
-  id: 2023003,
-  title: "교권침해 사안 보고 진행중",
-  category: "대구",
-  subcategory: "복현동",
-  region: "경북대학교",
-  quantity: 1,
-  time: 12,
-  progress: 0.75,
-  wallet: ["0x1234567890123456789012345678901234567890", "0x1234567890123456789012345678901234567890"],
-  likes: 0,
-},
-{
-  id: "2023001",
-  title: "침해신고 2023001 처리중",
-  category: "대구",
-  subcategory: "복현동",
-  region: "경북대학교",
-  quantity: 1,
-  time: 12,
-  progress: 0.75,
-  wallet: ["0x1234567890123456789012345678901234567890"],
-  likes: 0,
-},
-{
-id: 2023002,
-title: "침해신고 2023002 처리중",
-category: "대구",
-subcategory: "복현동",
-region: "경북대학교",
-quantity: 1,
-time: 12,
-progress: 0.75,
-wallet: ["0x1234567890123456789012345678901234567890", "0x1234567890123456789012345678901234567890", "0x1234567890123456789012345678901234567890"],
-likes: 0,
-},
-{
-id: 2023003,
-title: "교권침해 사안 보고 진행중",
-category: "대구",
-subcategory: "복현동",
-region: "경북대학교",
-quantity: 1,
-time: 12,
-progress: 0.75,
-wallet: ["0x1234567890123456789012345678901234567890", "0x1234567890123456789012345678901234567890"],
-likes: 0,
-}
-
-  ]);
+  const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const [init, setInit] = useState(false);
   const navigate = useNavigate();
@@ -128,13 +54,22 @@ likes: 0,
 
   const fetchData = async () => {
     try {
-      let Api_Url = `/moin?page=${currentPage}&ordering=${currentOption}`;
-
-      const response = await axios.get(Api_Url);
-      setCount(response.data.count);
-      setData(response.data.results.slice(0, response.data.results.length));
-      setInit(true);
-    } catch (e) {}
+      const response = await axios.get('/reports');
+      if (response.data && Array.isArray(response.data)) {
+        setData(response.data.map(item => ({
+          name: item.name,
+          id: item.id,
+          title: item.title,
+          content: item.content,
+          is_case_close: item.is_case_close,
+          school_name: item.school_name,
+          progress: 0.5,        
+        })));
+        setInit(true);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleOpen = (data) => {
@@ -218,11 +153,9 @@ likes: 0,
               <Card.Item
                 key={index}
                 title={value.title}
-                category={value.category}
-                subcategory={value.subcategory}
-                region={value.region}
-                quantity={value.quantity}
-                time={value.time}
+                name={value.name}
+                school_name={value.school_name}
+                case_num={value.id}
                 progress={value.progress}
                 onClick={() => handleOpen(value)}
               />

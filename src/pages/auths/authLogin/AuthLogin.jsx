@@ -10,8 +10,7 @@ import AuthLoginForm from "../../../components/auths/authLogin/AuthLoginForm";
 import AuthSocialButton from "../../../components/auths/authSocialButton/AuthSocialButton";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../context/authState";
-import {KakaoLogin, KAKAO_AUTH_URI} from "./kakaoAuth";
-import {fetchNaverTokens, NAVER_AUTH_URI} from "./naverAuth";
+import { KAKAO_AUTH_URI, NAVER_AUTH_URI } from "./OAuthProperties";
 
 export default function AuthLogin() {
   const navigate = useNavigate();
@@ -24,24 +23,8 @@ export default function AuthLogin() {
   const OnClickSocialLogin = async (platform) => {
     if (platform === "kakao") {
       window.location.href = KAKAO_AUTH_URI;
-      // const success = await KakaoLogin();
-
-      // if (success) {
-      //   navigate("/");
-      // } else {
-      //   window.location.href = KAKAO_AUTH_URI;
-      // }
-
-    }
-
-    else if (platform === "naver") {
-      const success = await fetchNaverTokens();
-
-      if (success) {
-        navigate("/");
-      } else {
-        window.location.href = NAVER_AUTH_URI;
-      }
+    } else if (platform === "naver") {
+      window.location.href = NAVER_AUTH_URI;
     }
   }
 
@@ -78,34 +61,9 @@ export default function AuthLogin() {
           alert("비밀번호를 다시 입력해주세요!");
         }
     }).catch(function (error) { 
-      console.log(error.response.status)
-      console.log(error.response.data.error)
-      if(error.response.status==401) {
-        navigate("/login");
-      } 
+      alert("비밀번호를 다시 입력해주세요!");
+      navigate("/login");
     })
-
-    // try {
-    //   const response = await axios.post("/auth/login", {
-    //     email: email,
-    //     password: pwd,
-    //   });
-
-    //   if (response.status === 200) {
-    //     const accessToken = response.data.response.body.token.access_token;
-    //     localStorage.setItem("access_token", accessToken);
-
-    //     // navigate("/");
-    //     alert("로그인이 완료되었습니다.");
-    //   } else {
-    //     alert("비밀번호를 다시 입력해주세요!");
-    //   }
-      
-    // } catch (error) {
-    //   error.preventDefault();
-    //   console.error("Login failed:", error.message);
-    //   alert("비밀번호를 다시 입력해주세요!");
-    // }
   };
 
   return (
