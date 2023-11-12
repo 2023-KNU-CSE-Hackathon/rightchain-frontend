@@ -78,11 +78,11 @@ export default function AuthLogin() {
           alert("비밀번호를 다시 입력해주세요!");
         }
     }).catch(function (error) { 
-      // console.log(error.response.status)
-      // console.log(error.response.data.error)
-      // if(error.response.status==401) {
-      //   navigate("/login");
-      // } 
+      console.log(error.response.status)
+      console.log(error.response.data.error)
+      if(error.response.status==401) {
+        navigate("/login");
+      } 
     })
 
     // try {
