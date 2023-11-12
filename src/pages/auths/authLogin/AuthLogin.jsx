@@ -24,13 +24,13 @@ export default function AuthLogin() {
   const OnClickSocialLogin = async (platform) => {
     if (platform === "kakao") {
       window.location.href = KAKAO_AUTH_URI;
-      const success = await KakaoLogin();
+      // const success = await KakaoLogin();
 
-      if (success) {
-        navigate("/");
-      } else {
-        window.location.href = KAKAO_AUTH_URI;
-      }
+      // if (success) {
+      //   navigate("/");
+      // } else {
+      //   window.location.href = KAKAO_AUTH_URI;
+      // }
 
     }
 
@@ -62,24 +62,50 @@ export default function AuthLogin() {
       return;
     }
 
-    try {
-      const response = await axios.post("/auth/login", {
-        email: email,
-        password: pwd,
-      });
+    axios
+    .post("/auth/login", {
+      email: email,
+      password: pwd,
+    })
+    .then(function (response) {
+        if (response.status === 200) {
+          const accessToken = response.data.response.body.token.access_token;
+          localStorage.setItem("access_token", accessToken);
+  
+          navigate("/");
+          alert("로그인이 완료되었습니다.");
+        } else {
+          alert("비밀번호를 다시 입력해주세요!");
+        }
+    }).catch(function (error) { 
+      // console.log(error.response.status)
+      // console.log(error.response.data.error)
+      // if(error.response.status==401) {
+      //   navigate("/login");
+      // } 
+    })
 
-      if (response.status === 200) {
-        const accessToken = response.data.response.body.token.access_token;
-        localStorage.setItem("access_token", accessToken);
+    // try {
+    //   const response = await axios.post("/auth/login", {
+    //     email: email,
+    //     password: pwd,
+    //   });
 
-        navigate("/");
-        alert("로그인이 완료되었습니다.");
-      }
+    //   if (response.status === 200) {
+    //     const accessToken = response.data.response.body.token.access_token;
+    //     localStorage.setItem("access_token", accessToken);
+
+    //     // navigate("/");
+    //     alert("로그인이 완료되었습니다.");
+    //   } else {
+    //     alert("비밀번호를 다시 입력해주세요!");
+    //   }
       
-    } catch (error) {
-      console.error("Login failed:", error.message);
-      alert("비밀번호를 다시 입력해주세요!");
-    }
+    // } catch (error) {
+    //   error.preventDefault();
+    //   console.error("Login failed:", error.message);
+    //   alert("비밀번호를 다시 입력해주세요!");
+    // }
   };
 
   return (

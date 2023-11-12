@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-
+import axios from "../../../api/axios";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -39,7 +39,7 @@ export default function NavBar() {
   const menuContents = [
     {
       link: `/community`,
-      title: ["커뮤니티", "Community"]
+      title: ["사건상세", "Detail"]
     },
     {
       link: `/notice`,
@@ -87,6 +87,7 @@ export default function NavBar() {
     }
   };
 
+
   useEffect(() => {
     if (window.innerWidth <= 550) {
       setisMobile(true);
@@ -99,14 +100,30 @@ export default function NavBar() {
   }, []);
 
   // 로그인 정보 불러오기
-  const [userInfo, setUserInfo] = useRecoilState(userState);
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    const storedUserInfo = JSON.parse(localStorage.getItem("userInfo"));
-    if (storedUserInfo) {
-      setUserInfo(storedUserInfo);
+    const storedToken = localStorage.getItem("access_token");
+    console.log("storedToken:", storedToken);
+    if (storedToken) {
+      axios.get("/auth/info", {
+        headers: {
+          Authorization: `Bearer ${storedToken}`
+        }
+      }).then(response => {
+        setUserInfo(response.data);
+      }).catch(error => {
+        console.error("failed to fetch user info:", error.message);
+        localStorage.removeItem("access_token");
+        setUserInfo(null);
+      });
     }
-  }, []);
+  }, [location.pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    setUserInfo(null);
+  }
 
   return (
     <S.NavWrapper>
@@ -126,7 +143,20 @@ export default function NavBar() {
               <S.NavSideBarHeader>
                 {userInfo ? (
                   <S.NavLink to={`/mypage`} $isActive={true}>
-                    {userInfo.nickname}
+                    {userInfo.name}
+                    {getLanguageNum() == 0 ? " 님" : ""}
+                  </S.NavLink>
+                ) : (
+                  <S.NavLink to={`/login`} $isActive={true}>
+                    {getLanguageNum() == 0 ? "로그인하세요!" : "Login!"}
+                  </S.NavLink>
+                )}
+                <BsChevronCompactRight />
+              </S.NavSideBarHeader>
+              <S.NavSideBarHeader>
+                {userInfo ? (
+                  <S.NavLink to={`/mypage`} $isActive={true}>
+                    {userInfo.name}
                     {getLanguageNum() == 0 ? " 님" : ""}
                   </S.NavLink>
                 ) : (

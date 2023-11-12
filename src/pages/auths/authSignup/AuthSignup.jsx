@@ -9,7 +9,7 @@ function Signup() {
     email: "",
     role: "",
     password: "",
-    // name: "",
+    name: "",
     school : ""
   });
   
@@ -86,13 +86,13 @@ function Signup() {
       user.email &&
       user.password &&
       confirmPwd &&
-      // user.name &&
+      user.name &&
       user.role &&
       user.school
     ) {
       try {
         const response = await axios.post("/auth/register/", {
-          // name: user.name,
+          name: user.name,
           email: user.email,
           password: user.password,
           role: user.role,
