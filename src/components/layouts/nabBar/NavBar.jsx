@@ -13,8 +13,11 @@ import { userState } from "../../../context/authState";
 import RightChinLogo from "../../../assets/images/logo.png";
 
 import { LanguageAtom } from "../../../recoil/LanguageAtom";
+
 export default function NavBar() {
+
   const [language, setLanguage] = useRecoilState(LanguageAtom);
+
   const getLanguageNum = () => {
     if (language == "KOR") {
       return 0;
@@ -22,7 +25,9 @@ export default function NavBar() {
       return 1;
     }
   };
+
   //사이드바 열고 닫는 함수
+  
   const sideBar = useRef();
   const sideBarBackground = useRef();
 

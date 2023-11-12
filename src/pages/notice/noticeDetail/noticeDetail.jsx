@@ -16,14 +16,12 @@ function NoticeDetailPage() {
   }, []);
 
   const fetchDetail = async () => {
-    try {
-      // /api/v1/notifications/{notification_id}
-      const response = await axios.get(`notifications/${id}`);
-      if (response.status === 200) {
-        const data = response.data;
-        setDetail(data);
-      }
-    } catch (error) {}
+    const mockData = {
+      title: "4살 유치원생에게 성추행을 당했습니다",
+      content: "공지사항 내용",
+      view_cnt: 100,
+    };
+    setDetail(mockData);
   };
 
   // 디테일 렌더링
@@ -35,7 +33,7 @@ function NoticeDetailPage() {
       </>
     ) : (
       <>
-        <CommunityDetailContent detail={detail} isWriter={false} id={id} />
+        <CommunityDetailContent detail={detail} isWriter={false} id={123} />
         <S.DetailDiviner />
         <S.LikeViewWrapper>
           <S.Thumbnailimg src={EyeOutlineIcon} alt="조회수" />
