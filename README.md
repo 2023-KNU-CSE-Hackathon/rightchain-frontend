@@ -30,5 +30,18 @@ S타입. 권리 보호를 위한 SW 개발
 
 ----
 #  3. 프로젝트에 사용된 기술
+### 3-1. BackEnd 
+SpringBoot 프레임 워크를 제공 하였습니다. JWT를 추가적으로 구현해 인증 및 인가처리를 진행하였고 이 기능을 이용하여 로그인과 같은 여러 인증 처리가 필요한 부분을 구현하였습니다
+
+### 3-2. 인프라
+인프라 부분에서는 Certbot, Nginx, Docker로 크게 3부분의 기술을 사용하였습니다.\n
+- Certbot\n
+Certbot에서는 https SSL 인증서를 자동화를 구현하였습니다
+- Nginx: SSL관련 인증서를 적용하고, proxy pass를 이용하여 서비스 이용시 발생할 수 있는 보안적 문제를 해결하였습니다.
+- Docker: Dockerization을 통하여 서비스가 환경에 영향을 받지 않도록 하고 효과적으로 서비스를 관리 할수 있습니다. 또한 DB는 Volum으로 영속성과 공유성을 보장할수 있습니다.
+
+### 3-3 블록체인
+
 
 #  기타
+Right Chain API: [Right Chain Service API](https://app.getpostman.com/join-team?invite_code=1bcbe45f5cd1a43460929f18e6e3744b&target_code=079b1e4b79dc7d6067eeb302f2d8fa7b)
